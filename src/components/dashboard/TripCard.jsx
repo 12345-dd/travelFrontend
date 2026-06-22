@@ -11,6 +11,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -123,39 +124,46 @@ function TripCard({
         </Box>
 
         <Box
-          sx={{
+        sx={{
             display: "flex",
             gap: 1,
-          }}
+        }}
         >
-          <Button
-            fullWidth
-            variant="contained"
-            startIcon={
-              <VisibilityIcon />
-            }
-            onClick={() =>
-              navigate(
-                `/trip/${trip._id}`
-              )
-            }
-          >
-            View
-          </Button>
+            <Button
+                fullWidth
+                variant="contained"
+                startIcon={<VisibilityIcon />}
+                onClick={() =>
+                navigate(`/trip/${trip._id}`)
+                }
+            >
+                View
+            </Button>
 
-          <Button
-            fullWidth
-            color="error"
-            variant="outlined"
-            startIcon={<DeleteIcon />}
-            onClick={() =>
-              handleDelete(
-                trip._id
-              )
-            }
-          >
-            Delete
-          </Button>
+            <Button
+                fullWidth
+                variant="outlined"
+                startIcon={<EditIcon />}
+                onClick={() =>
+                navigate(
+                    `/edit-trip/${trip._id}`
+                )
+                }
+            >
+                Edit
+            </Button>
+
+            <Button
+                fullWidth
+                color="error"
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={() =>
+                handleDelete(trip._id)
+                }
+            >
+                Delete
+            </Button>
         </Box>
       </CardContent>
     </Card>
