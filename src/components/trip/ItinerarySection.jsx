@@ -37,7 +37,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
 
   const handleAddActivity = async (activity) => {
       try {
-        await axios.post(`http://localhost:4000/trips/${tripId}/activity`,
+        await axios.post(`https://travelbackend-1-3zq9.onrender.com/trips/${tripId}/activity`,
           {
             dayNumber: selectedDay,
             activity,
@@ -60,7 +60,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
   const handleDeleteActivity =
     async (dayNumber, activityId) => {
       try {
-        await axios.delete(`http://localhost:4000/trips/${tripId}/activity`,
+        await axios.delete(`https://travelbackend-1-3zq9.onrender.com/trips/${tripId}/activity`,
           {
             headers: authHeader(),
             data: {
@@ -90,7 +90,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
 
       try {
         setRegeneratingDay(dayNumber)
-        await axios.post(`http://localhost:4000/trips/${tripId}/regenerate-day`,
+        await axios.post(`https://travelbackend-1-3zq9.onrender.com/trips/${tripId}/regenerate-day`,
           {
             dayNumber,
             userPrompt: "",

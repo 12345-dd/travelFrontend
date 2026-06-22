@@ -31,7 +31,7 @@ function Signup() {
   const submitHandler = async (data) => {
     try {
       await axios.post(
-        "http://localhost:4000/signup",
+        "https://travelbackend-1-3zq9.onrender.com/signup",
         data
       );
 

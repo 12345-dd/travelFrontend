@@ -62,7 +62,7 @@ function CreateTrip() {
       };
 
       const res = await axios.post(
-        "http://localhost:4000/trips",
+        "https://travelbackend-1-3zq9.onrender.com/trips",
         payload,
         {
           headers: authHeader(),

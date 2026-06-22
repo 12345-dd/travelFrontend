@@ -24,7 +24,7 @@ function Dashboard() {
   const fetchTrips = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/trips",
+        "https://travelbackend-1-3zq9.onrender.com/trips",
         {
           headers: authHeader(),
         }

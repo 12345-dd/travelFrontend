@@ -22,25 +22,17 @@ import {
   showError,
 } from "../../utils/toast";
 
-function TripCard({
-  trip,
-  fetchTrips,
-}) {
+function TripCard({trip, fetchTrips}) {
   const navigate = useNavigate();
 
-  const handleDelete = async (
-    tripId
-  ) => {
-    const confirmDelete =
-      window.confirm(
-        `Delete trip to ${trip.destination}?`
-      );
+  const handleDelete = async (tripId) => {
+    const confirmDelete = window.confirm(`Delete trip to ${trip.destination}?`);
 
     if (!confirmDelete) return;
 
     try {
       await axios.delete(
-        `http://localhost:4000/trips/${tripId}`,
+        `https://travelbackend-1-3zq9.onrender.com/trips/${tripId}`,
         {
           headers: authHeader(),
         }

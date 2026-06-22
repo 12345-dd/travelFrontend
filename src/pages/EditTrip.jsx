@@ -29,11 +29,9 @@ function EditTrip() {
 
   const navigate = useNavigate();
 
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
 
-  const [interests, setInterests] =
-    useState([]);
+  const [interests, setInterests] = useState([]);
 
   const {register, handleSubmit, setValue, formState: {errors, isSubmitting}} = useForm();
 
@@ -51,7 +49,7 @@ function EditTrip() {
   const fetchTrip = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/trips/${id}`,
+        `https://travelbackend-1-3zq9.onrender.com/trips/${id}`,
         {
           headers: authHeader(),
         }
@@ -79,7 +77,7 @@ function EditTrip() {
 
   const submitHandler = async (data) => {
     try {
-      await axios.put(`http://localhost:4000/trips/${id}`,
+      await axios.put(`https://travelbackend-1-3zq9.onrender.com/trips/${id}`,
         {
           budgetTier: data.budgetTier,
           interests,

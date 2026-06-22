@@ -27,7 +27,7 @@ function TripDetails() {
   const fetchTrip = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/trips/${id}`,
+        `https://travelbackend-1-3zq9.onrender.com/trips/${id}`,
         {
           headers: authHeader(),
         }
