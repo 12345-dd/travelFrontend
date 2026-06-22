@@ -12,6 +12,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 
 import { useState } from "react";
@@ -26,6 +27,8 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
   const [openDialog, setOpenDialog] = useState(false);
 
   const [selectedDay, setSelectedDay] = useState(null);
+
+  const [regeneratingDay, setRegeneratingDay] = useState(null)
 
   const handleOpenDialog = (dayNumber) => {
     setSelectedDay(dayNumber);
@@ -74,7 +77,40 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
         showError(err.response?.data?.message || "Failed To Delete Activity"
         );
       }
-    };    
+    };
+    
+  const handleRegenerateDay = async (dayNumber) => {
+      const confirmRegenerate = window.confirm(
+          `Are You sure to Regenerate Day ${dayNumber}?`
+        );
+
+      if (!confirmRegenerate) {
+        return;
+      }
+
+      try {
+        setRegeneratingDay(dayNumber)
+        await axios.post(`http://localhost:4000/trips/${tripId}/regenerate-day`,
+          {
+            dayNumber,
+            userPrompt: "",
+          },
+          {
+            headers: authHeader(),
+          }
+        );
+
+        showSuccess(`Day ${dayNumber} Regenerated Successfully`);
+
+        fetchTrip();
+      } catch (err) {
+        console.log(err);
+
+        showError(err.response?.data?.message || "Failed To Regenerate Day");
+      }finally{
+        setRegeneratingDay(null)
+      }
+    };
 
   return (
     <>
@@ -112,14 +148,29 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
               Day {day.dayNumber}
             </Typography>
 
-            <Button
-              variant="contained"
+            <Box
+              display="flex"
               sx={{mt:2}}
-              startIcon={<AddIcon />}
-              onClick={() => handleOpenDialog(day.dayNumber)}
             >
-              Add Activity
-            </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<AutoFixHighIcon />}
+                disabled={regeneratingDay == day.dayNumber}
+                onClick={() => handleRegenerateDay(day.dayNumber)}
+              >
+                {regeneratingDay == day.dayNumber ? "Regenerating...." : "Regenerate"}
+              </Button>
+
+              <Button
+                variant="contained"
+                sx={{ml:2}}
+                startIcon={<AddIcon />}
+                onClick={() => handleOpenDialog(day.dayNumber)}
+              >
+                Add Activity
+              </Button>
+            </Box>
           </Box>
 
           <Divider sx={{ mb: 2 }} />
@@ -145,9 +196,12 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
                     mb={1}
                   >
                     <Box
-                      display="flex"
-                      alignItems="center"
-                      gap={1}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        mb: 2
+                      }}
                     >
                       <ExploreIcon color="primary" />
 
@@ -157,7 +211,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
                       >
                         {activity.title}
                       </Typography>
-                    </Box>
+
 
                     <IconButton
                       color="error"
@@ -170,6 +224,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
                     >
                       <DeleteIcon />
                     </IconButton>
+                    </Box>
                   </Box>
 
                   <Typography mb={1}>

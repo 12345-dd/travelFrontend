@@ -44,7 +44,7 @@ function BudgetSection({ estimatedBudget }) {
       <Typography
         variant="h4"
         fontWeight={700}
-        mb={3}
+        sx={{mb:3}}
       >
         Budget Summary
       </Typography>

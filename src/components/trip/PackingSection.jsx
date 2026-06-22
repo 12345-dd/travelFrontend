@@ -18,10 +18,12 @@ function PackingSection({ packingList }) {
       }}
     >
       <Box
-        display="flex"
-        alignItems="center"
-        gap={1}
-        mb={3}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          mb: 2
+        }}       
       >
         <BackpackIcon color="warning" />
 

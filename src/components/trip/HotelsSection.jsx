@@ -68,18 +68,24 @@ function HotelsSection({ hotels }) {
                 />
 
                 <Box
-                  display="flex"
-                  alignItems="center"
-                  gap={1}
-                  mb={2}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 0.5,
+                    mb: 2,
+                  }}
                 >
                   <StarIcon
                     sx={{
                       color: "#FFC107",
+                      fontSize: 20,
                     }}
                   />
 
-                  <Typography>
+                  <Typography
+                    variant="body2"
+                    fontWeight="bold"
+                  >
                     {hotel.rating}
                   </Typography>
                 </Box>
