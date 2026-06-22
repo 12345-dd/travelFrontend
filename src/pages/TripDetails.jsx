@@ -100,7 +100,10 @@ function TripDetails() {
 
       <ItinerarySection
         itinerary={trip.itinerary}
+        tripId={trip._id}
+        fetchTrip={fetchTrip}
       />
+      
     </Container>
   );
 }
