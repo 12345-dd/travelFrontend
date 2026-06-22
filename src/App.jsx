@@ -9,6 +9,7 @@ import CreateTrip from './pages/CreateTrip'
 import TripDetails from './pages/TripDetails'
 import { Bounce, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 function App() {
@@ -18,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-trip" element={<CreateTrip />} />
-        <Route path="/trip/:id" element={<TripDetails />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/create-trip" element={<ProtectedRoute><CreateTrip /></ProtectedRoute>} />
+        <Route path="/trip/:id" element={<ProtectedRoute><TripDetails /></ProtectedRoute>} />
       </Routes>
       <ToastContainer
         position="top-center"
