@@ -57,8 +57,7 @@ function ItinerarySection({itinerary, tripId, fetchTrip}) {
       }
     };
 
-  const handleDeleteActivity =
-    async (dayNumber, activityId) => {
+  const handleDeleteActivity = async (dayNumber, activityId) => {
       try {
         await axios.delete(`https://travelbackend-1-3zq9.onrender.com/trips/${tripId}/activity`,
           {
