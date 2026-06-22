@@ -15,7 +15,7 @@ function ItinerarySection({ itinerary }) {
       <Typography
         variant="h4"
         fontWeight="bold"
-        mb={3}
+        sx={{mb:3}}
       >
         Travel Itinerary
       </Typography>

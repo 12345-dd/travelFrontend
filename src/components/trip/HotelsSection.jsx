@@ -3,41 +3,43 @@ import {
   CardContent,
   Chip,
   Typography,
-  Box
+  Box,
 } from "@mui/material";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
 import HotelIcon from "@mui/icons-material/Hotel";
 import StarIcon from "@mui/icons-material/Star";
 
 function HotelsSection({ hotels }) {
   return (
-    <>
+    <Box sx={{ mb: 6 }}>
       <Typography
         variant="h4"
         fontWeight="bold"
-        mb={3}
+        sx={{ mb: 3 }}
       >
         Recommended Hotels
       </Typography>
 
-      <Grid container spacing={3} mb={5}>
+      <Grid container spacing={3}>
         {hotels?.map((hotel, index) => (
           <Grid
-            item
-            xs={12}
-            md={4}
             key={index}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+            }}
           >
             <Card
+              elevation={3}
               sx={{
                 height: "100%",
                 borderRadius: 4,
                 transition: "0.3s",
                 "&:hover": {
-                  transform:
-                    "translateY(-8px)",
-                  boxShadow: 10,
+                  transform: "translateY(-6px)",
+                  boxShadow: 8,
                 },
               }}
             >
@@ -69,7 +71,7 @@ function HotelsSection({ hotels }) {
                   display="flex"
                   alignItems="center"
                   gap={1}
-                  mb={1}
+                  mb={2}
                 >
                   <StarIcon
                     sx={{
@@ -82,16 +84,18 @@ function HotelsSection({ hotels }) {
                   </Typography>
                 </Box>
 
-                <Typography>
-                  ${hotel.estimatedCostNightUSD}
-                  /Night
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                >
+                  ${hotel.estimatedCostNightUSD}/Night
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   );
 }
 

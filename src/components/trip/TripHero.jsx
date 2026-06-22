@@ -51,7 +51,7 @@ function TripHero({ trip }) {
           </Box>
         </Box>
 
-        <Box textAlign="right">
+        <Box textAlign="right" sx={{mt:3}}>
           <Typography variant="body2">
             Total Budget
           </Typography>
@@ -65,7 +65,7 @@ function TripHero({ trip }) {
         </Box>
       </Box>
 
-      <Box mt={3}>
+      <Box sx={{mt:3}}>
         {trip.interests?.map((item) => (
           <Chip
             key={item}
@@ -73,7 +73,7 @@ function TripHero({ trip }) {
             sx={{
               mr: 1,
               mb: 1,
-              bgcolor: "white",
+              bgcolor: "lightgreen",
               fontWeight: 600,
             }}
           />

@@ -39,11 +39,7 @@ function PackingSection({ packingList }) {
             <Chip
               key={index}
               label={item.item}
-              color={
-                item.isPacked
-                  ? "success"
-                  : "default"
-              }
+              color="success"
               sx={{
                 m: 1,
                 fontWeight: 600,
